@@ -41,7 +41,7 @@ int main (){
 
     ofstream archivo2; 
     string temp_id;
-    ifstream archivo_temp;
+    ifstream archivo_temp; 
     ofstream archivo_temp_out;
 
     switch (opcion){
@@ -96,16 +96,58 @@ int main (){
             break;
 
         case 3:
-            cout << "Por implementar." << endl; // Mensaje temporal
-            break;
+
+           cout<< "Ingrese el numero de lista que quiere modificar: "<<endl;
+    cin>> id;
+
+    archivo_temp.open("cars_data.csv"); // Aquí está la corrección
+    archivo_temp_out.open("temp.csv");
+
+    while (getline(archivo_temp, linea)){
+        size_t pos = linea.find(';');
+        string current_id = linea.substr(0, pos);
+
+        if (current_id == id){
+            cout << "Ingrese el nuevo fabricante: ";
+            cin >> fabricante;
+
+            cout << "Ingrese el nuevo modelo: ";
+            cin >> modelo;
+
+            cout << "Ingrese el nuevo año: ";
+            cin >> año;
+
+            cout << "Ingrese a quien se vendio: ";
+            cin >> vendido_a;
+
+            cout << "Ingrese de quien se compro: ";
+            cin >> comprado_a;
+
+            cout << "Ingrese el precio de venta: ";
+            cin >> vendido_por;
+
+            cout << "Ingrese el precio de compra: ";
+            cin >> comprado_por;
+
+            archivo_temp_out << id << ";" << fabricante << ";" << modelo << ";" << año << ";" << vendido_a << ";" << comprado_a << ";" << vendido_por << ";" << comprado_por << endl;
+        } else {
+            archivo_temp_out << linea << endl;
+        }
+    }
+
+    archivo_temp.close(); 
+    archivo_temp_out.close(); 
+
+    remove("cars_data.csv"); 
+    rename("temp.csv", "cars_data.csv"); 
+
+    cout<< "registro editado. "<<endl;
+    break;
 
         default:
             break;  
     }
 }
-
-
-
 
 
 
