@@ -6,18 +6,44 @@
 #include <cstdlib>
 
 using namespace std;    
-
+struct clients{
+    string id;
+    string nombre;
+    string apellido;
+    string email;
+    string edad;
+};
+struct carros{
+    string id;
+    string fabricante;
+    string modelo;
+    string año;
+    string vendido_a;
+    string comprado_a;
+    string vendido_por;
+    string comprado_por;
+};
 string linea;
-string texto;
+string texto, texto2; 
 string dato;
-string id, fabricante, modelo, año, vendido_a, comprado_a, vendido_por, comprado_por;
 
 int main (){
+
+    ifstream archivo("clients.csv");
+
+    while (getline(archivo, linea)){
+        texto2= texto2 + linea+ "\n";
+        
+    }
     
+
+    archivo.close();
+
     ifstream archivo("cars_data.csv");
 
     while (getline(archivo, linea)){
         texto= texto + linea+ "\n";
+        
     }
     archivo.close();
 
@@ -43,35 +69,43 @@ int main (){
     string temp_id;
     ifstream archivo_temp; 
     ofstream archivo_temp_out;
+    carros c;
 
     switch (opcion){
         case 1:
             cout << "Ingrese el ID: ";
-            cin >> id;
+            cin >> c.id;
 
             cout << "Ingrese el fabricante: ";
-            cin >> fabricante;
+            cin >> c.fabricante;
 
             cout << "Ingrese el modelo: ";
-            cin >> modelo;
+            cin >> c.modelo;
 
             cout << "Ingrese el año: ";
-            cin >> año;
+            cin >> c.año;
 
             cout << "Ingrese a quien se vendio: ";
-            cin >> vendido_a;
+            cin >> c.vendido_a;
 
             cout << "Ingrese de quién se compro: ";
-            cin >> comprado_a;
+            cin >> c.comprado_a;
 
             cout << "Ingrese el precio de venta: ";
-            cin >> vendido_por;
+            cin >> c.vendido_por;
 
             cout << "Ingrese el precio de compra: ";
-            cin >> comprado_por;
+            cin >> c.comprado_por;
 
             archivo2.open("cars_data.csv", ios::app);
-            archivo2 << id << ";" << fabricante << ";" << modelo << ";" << año << ";" << vendido_a << ";" << comprado_a << ";" << vendido_por << ";" << comprado_por << endl;
+            archivo2 << c.id << ";" 
+            << c.fabricante << ";" 
+            <<c.modelo << ";" 
+            << c.año << ";" 
+            << c.vendido_a << ";" 
+            << c.comprado_a << ";" 
+            << c.vendido_por << ";" 
+            << c.comprado_por << endl;
             archivo2.close(); 
             break;
 
@@ -98,7 +132,7 @@ int main (){
         case 3:
 
            cout<< "Ingrese el numero de lista que quiere modificar: "<<endl;
-    cin>> id;
+    cin>> c.id;
 
     archivo_temp.open("cars_data.csv"); // Aquí está la corrección
     archivo_temp_out.open("temp.csv");
@@ -107,29 +141,36 @@ int main (){
         size_t pos = linea.find(';');
         string current_id = linea.substr(0, pos);
 
-        if (current_id == id){
+        if (current_id == c.id){
             cout << "Ingrese el nuevo fabricante: ";
-            cin >> fabricante;
+            cin >> c.fabricante;
 
             cout << "Ingrese el nuevo modelo: ";
-            cin >> modelo;
+            cin >> c.modelo;
 
             cout << "Ingrese el nuevo año: ";
-            cin >> año;
+            cin >> c.año;
 
             cout << "Ingrese a quien se vendio: ";
-            cin >> vendido_a;
+            cin >> c.vendido_a;
 
             cout << "Ingrese de quien se compro: ";
-            cin >> comprado_a;
+            cin >> c.comprado_a;
 
             cout << "Ingrese el precio de venta: ";
-            cin >> vendido_por;
+            cin >> c.vendido_por;
 
             cout << "Ingrese el precio de compra: ";
-            cin >> comprado_por;
+            cin >> c.comprado_por;
 
-            archivo_temp_out << id << ";" << fabricante << ";" << modelo << ";" << año << ";" << vendido_a << ";" << comprado_a << ";" << vendido_por << ";" << comprado_por << endl;
+            archivo_temp_out << c.id << ";" 
+            << c.fabricante << ";"
+             << c.modelo << ";" 
+             << c.año << ";" 
+             << c.vendido_a << ";" 
+             << c.comprado_a << ";" 
+             << c.vendido_por << ";" 
+             << c.comprado_por << endl;
         } else {
             archivo_temp_out << linea << endl;
         }
