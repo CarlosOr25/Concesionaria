@@ -1,19 +1,21 @@
-#include <iostream> 
+#include <iostream>
 #include <string>
-#include <fstream> 
+#include <fstream>
 #include <algorithm>
 #include <sstream>
 #include <cstdlib>
 
-using namespace std;    
-struct clients{
+using namespace std;
+
+struct clients {
     string id;
     string nombre;
     string apellido;
     string email;
     string edad;
 };
-struct carros{
+
+struct carros {
     string id;
     string fabricante;
     string modelo;
@@ -23,53 +25,63 @@ struct carros{
     string vendido_por;
     string comprado_por;
 };
+
 string linea;
-string texto, texto2; 
+string texto, texto2;
 string dato;
 
-int main (){
+int main() {
+    ifstream archivo_clients("clients.csv"); // Cambio de nombre de archivo
+    ifstream archivo_cars("cars_data.csv"); // Cambio de nombre de archivo
 
-    ifstream archivo("clients.csv");
-
-    while (getline(archivo, linea)){
-        texto2= texto2 + linea+ "\n";
-        
+    while (getline(archivo_clients, linea)) {
+        texto2 = texto2 + linea + "\n";
     }
-    
+    archivo_clients.close();
 
-    archivo.close();
-
-    ifstream archivo("cars_data.csv");
-
-    while (getline(archivo, linea)){
-        texto= texto + linea+ "\n";
-        
+    while (getline(archivo_cars, linea)) {
+        texto = texto + linea + "\n";
     }
-    archivo.close();
+    archivo_cars.close();
 
     bool opcionvalida = false;
-    int opcion;
+    int opcion, opcion2, opcion3;
 
     do {
-        cout << "Que desea hacer?" << "\n"
-             << "1. Agregar un dato."   << "\n"
-             << "2. Eliminar un dato."  << "\n"  
-             << "3. Modificar un dato." << "\n";
-        cin >> opcion;
+        cout << "Que archivo desea modificar?" << "\n"
+             << "1. Clients." << "\n"
+             << "2. Cars." << "\n";
+        cin >> opcion2;
 
-        if (opcion >= 1 && opcion <= 3) {
+        if (opcion2 >= 1 && opcion2 <= 2) {
             opcionvalida = true;
         } else {
             cout << "Opcion invalida. Por favor, ingrese un numero valido." << endl;
         }
-    } 
-    while (!opcionvalida);
+    } while (!opcionvalida);
 
-    ofstream archivo2; 
-    string temp_id;
-    ifstream archivo_temp; 
-    ofstream archivo_temp_out;
-    carros c;
+    if (opcion2 == 2) { 
+
+        do {
+            cout << "Que desea hacer?" << "\n"
+                 << "1. Agregar un dato." << "\n"
+                 << "2. Eliminar un dato." << "\n"
+                 << "3. Modificar un dato." << "\n";
+            cin >> opcion;
+
+            if (opcion >= 1 && opcion <= 3) {
+                opcionvalida = true;
+            } else {
+                cout << "Opcion invalida. Por favor, ingrese un numero valido." << endl;
+                opcionvalida = false; // Reiniciar la validación
+            }
+        } while (!opcionvalida);
+
+        ofstream archivo2;
+        string temp_id;
+        ifstream archivo_temp;
+        ofstream archivo_temp_out;
+        carros c;
 
     switch (opcion){
         case 1:
@@ -136,8 +148,7 @@ int main (){
 
     archivo_temp.open("cars_data.csv"); // Aquí está la corrección
     archivo_temp_out.open("temp.csv");
-
-    while (getline(archivo_temp, linea)){
+while (getline(archivo_temp, linea)){
         size_t pos = linea.find(';');
         string current_id = linea.substr(0, pos);
 
@@ -188,11 +199,45 @@ int main (){
         default:
             break;  
     }
-}
+    }  else (opcion2 == 2);
 
+        do {
+            cout << "Que desea hacer?" << "\n"
+                 << "1. Agregar un dato." << "\n"
+                 << "2. Eliminar un dato." << "\n"
+                 << "3. Modificar un dato." << "\n";
+            cin >> opcion3;
 
+            if (opcion3 >= 1 && opcion3 <= 3) {
+                opcionvalida = true;
+            } else {
+                cout << "Opcion invalida. Por favor, ingrese un numero valido." << endl;
+                opcionvalida = false; // Reiniciar la validación
+            }
+        } while (!opcionvalida);
 
+        ofstream archivo2;
+        string temp_id;
+        ifstream archivo_temp;
+        ofstream archivo_temp_out;
+        clients s;
 
+    switch (opcion3){
+        case 1:
+        cout<< "Ingrese el ID: ";
+        cin>> s.id;
+        cout<< "Ingrese el nombre: ";
+        cin>> s.nombre;
+        cout<< "Ingrese el apellido: ";
+        cin>> s.apellido;
+        cout<< "Ingrese el email: ";
+        cin>> s.email;
+        cout<< "Ingrese la edad: ";
+        cin>> s.edad;
 
-
-
+        archivo2.open("clients.csv", ios::app);
+        archivo2<<"\n"<< s.id << ";" << s.nombre << ";" << s.apellido << ";" << s.email << ";" << s.edad << endl;
+        archivo2.close();
+        break;
+    }
+    }
