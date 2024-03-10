@@ -31,8 +31,8 @@ string texto, texto2;
 string dato;
 
 int main() {
-    ifstream archivo_clients("clients.csv"); // Cambio de nombre de archivo
-    ifstream archivo_cars("cars_data.csv"); // Cambio de nombre de archivo
+    ifstream archivo_clients("clients.csv"); 
+    ifstream archivo_cars("cars_data.csv"); 
 
     while (getline(archivo_clients, linea)) {
         texto2 = texto2 + linea + "\n";
@@ -73,7 +73,7 @@ int main() {
                 opcionvalida = true;
             } else {
                 cout << "Opcion invalida. Por favor, ingrese un numero valido." << endl;
-                opcionvalida = false; // Reiniciar la validación
+                opcionvalida = false; 
             }
         } while (!opcionvalida);
 
@@ -134,6 +134,7 @@ int main() {
                     archivo_temp_out << linea << endl;
                 }
             }
+            cout << "Registro eliminado." << endl;
             archivo_temp.close();
             archivo_temp_out.close();
 
@@ -146,9 +147,10 @@ int main() {
            cout<< "Ingrese el numero de lista que quiere modificar: "<<endl;
     cin>> c.id;
 
-    archivo_temp.open("cars_data.csv"); // Aquí está la corrección
+    archivo_temp.open("cars_data.csv"); 
     archivo_temp_out.open("temp.csv");
-while (getline(archivo_temp, linea)){
+
+    while (getline(archivo_temp, linea)){
         size_t pos = linea.find(';');
         string current_id = linea.substr(0, pos);
 
@@ -196,8 +198,6 @@ while (getline(archivo_temp, linea)){
     cout<< "registro editado. "<<endl;
     break;
 
-        default:
-            break;  
     }
     }  else (opcion2 == 2);
 
@@ -212,7 +212,7 @@ while (getline(archivo_temp, linea)){
                 opcionvalida = true;
             } else {
                 cout << "Opcion invalida. Por favor, ingrese un numero valido." << endl;
-                opcionvalida = false; // Reiniciar la validación
+                opcionvalida = false; 
             }
         } while (!opcionvalida);
 
@@ -223,6 +223,7 @@ while (getline(archivo_temp, linea)){
         clients s;
 
     switch (opcion3){
+        
         case 1:
         cout<< "Ingrese el ID: ";
         cin>> s.id;
@@ -236,8 +237,72 @@ while (getline(archivo_temp, linea)){
         cin>> s.edad;
 
         archivo2.open("clients.csv", ios::app);
-        archivo2<<"\n"<< s.id << ";" << s.nombre << ";" << s.apellido << ";" << s.email << ";" << s.edad << endl;
+        archivo2<< s.id << ";" << s.nombre << ";" << s.apellido << ";" << s.email << ";" << s.edad << endl;
         archivo2.close();
         break;
+
+        case 2:
+        archivo_temp.open("clients.csv");
+        archivo_temp_out.open("temp.csv");
+        cout<< "Ingrese el id del registro que desea eliminar: "<<endl;
+        cin>> temp_id;
+
+        while (getline(archivo_temp, linea)){
+            size_t pos = linea.find(';');
+            string current_id = linea.substr(0, pos);
+            if (current_id != temp_id){
+                archivo_temp_out << linea << endl;
+            }
+        }
+        cout<< "Registro eliminado. "<<endl;
+        archivo_temp.close();
+        archivo_temp_out.close();
+
+        remove("clients.csv");
+        rename("temp.csv", "clients.csv");
+        break;
+
+        case 3:
+
+        cout<< "Ingrese el numero de lista que quiere modificar: "<<endl;
+        cin>> s.id;
+
+        archivo_temp.open("clients.csv");
+        archivo_temp_out.open("temp.csv");
+
+        while (getline(archivo_temp, linea)){
+            size_t pos = linea.find(';');
+            string current_id = linea.substr(0, pos);
+
+            if (current_id == s.id){
+                cout<< "Ingrese el nuevo nombre: ";
+                cin>> s.nombre;
+                cout<< "Ingrese el nuevo apellido: ";
+                cin>> s.apellido;
+                cout<< "Ingrese el nuevo email: ";
+                cin>> s.email;
+                cout<< "Ingrese la nueva edad: ";
+                cin>> s.edad;
+
+                archivo_temp_out << s.id << ";" << s.nombre << ";" << s.apellido << ";" << s.email << ";" << s.edad << endl;
+            } else {
+                archivo_temp_out << linea << endl;
+            }
+        }
+    
+            archivo_temp.close();
+            archivo_temp_out.close();
+
+            remove("clients.csv");
+            rename("temp.csv", "clients.csv");
+
     }
     }
+
+
+
+
+
+
+
+
