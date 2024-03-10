@@ -45,8 +45,61 @@ int main() {
     archivo_cars.close();
 
     bool opcionvalida = false;
-    int opcion, opcion2, opcion3;
+    int opcion, opcion2, opcion3, opcion4;
 
+    do{
+        cout<< "Que necesita hacer?"<<endl
+            << "1. Ver cantidad de carros comprados por clientes."<<endl
+            << "2. Ver cantidad de carros vendidos por clientes."<<endl
+            << "3. Lista de carros comprados por clienttes."<<endl
+            << "4. Lista de carros vendidos por clientes."<<endl
+            << "5. Ver datos del comprador de un carro."<<endl
+            << "6. Ver datos del vendedor de un carro."<<endl
+            << "7. Mostrar Balance de un carro."<<endl
+            << "8. Modificar datos."<<endl;
+             cin>> opcion4;
+
+        if (opcion4 >= 1 && opcion4 <= 8) {
+            opcionvalida = true;
+        } else {
+            cout << "Opcion invalida. Por favor, ingrese un numero valido." << endl;
+            opcionvalida = false; 
+        }
+
+    } while (!opcionvalida);
+
+    switch (opcion4){
+        case 1:
+        cout<< "Cantidad de carros comprados por clientes: "<<endl;
+        break;
+
+        case 2:
+        cout<< "Cantidad de carros vendidos por clientes: "<<endl;
+        break;
+
+        case 3:
+        cout<< "Lista de carros comprados por clientes: "<<endl;
+        cout<< texto;
+        break;
+
+        case 4:
+        cout<< "Lista de carros vendidos por clientes: "<<endl;
+        cout<< texto;
+        break;
+
+        case 5:
+        cout<< "Datos del comprador de un carro: "<<endl;
+        break;
+
+        case 6:
+        cout<< "Datos del vendedor de un carro: "<<endl;
+        break;
+
+        case 7:
+        cout<< "Balance de un carro: "<<endl;
+        break;
+
+        case 8:
     do {
         cout << "Que archivo desea modificar?" << "\n"
              << "1. Clients." << "\n"
@@ -295,7 +348,8 @@ int main() {
 
             remove("clients.csv");
             rename("temp.csv", "clients.csv");
-
+    }
+    break;
     }
     }
 
