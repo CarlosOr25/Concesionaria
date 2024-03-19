@@ -61,7 +61,7 @@ int main()
     int total_carros_comprados = 0; // Declaración de total_carros_comprados fuera del switch
      cout << "Bienvenido a la Consecionaria" << endl;
     while (run)  {
-        cout << "Que necesita hacer?" << endl
+        cout << "\nQue necesita hacer?" << endl
              << "1. Ver cantidad de carros comprados por clientes." << endl
              << "2. Ver cantidad de carros vendidos por clientes." << endl
              << "3. Lista de carros comprados por clienttes." << endl
@@ -135,12 +135,57 @@ carCount = 0;
         carCount = 0;
             break;
         } 
-        case 3:
-            // Aquí debes implementar la lógica para la opción 3
+        case 3:{
+            cout<<" \nIngrese el ID del cliente: "; 
+            cin>>id3;
+
+            ReadClientData("clients.csv", clientCatalog, clientCatalogSize);
+            ReadCarData("cars_data.csv", carCatalog, carCatalogSize);
+
+            for(int i = 0; i < clientCatalogSize; i++)
+            {
+                if(clientCatalog[i].id == id3)
+                {
+                    nombre_cliente = clientCatalog[i].nombre;
+                    apellido_cliente = clientCatalog[i].apellido;
+
+          }
+        }
+        cout << "Los carros comprados por el cliente " << nombre_cliente <<" "<<apellido_cliente <<" son: \n";
+        for (int i = 0; i < carCatalogSize; i++)
+        {
+            if (carCatalog[i].comprado_a == id3)
+            {
+                cout << "\nID: " << carCatalog[i].id << "\nFabricante: " << carCatalog[i].fabricante << "\nModelo: " << carCatalog[i].modelo << "\nAnio:  \n" << carCatalog[i].anio << endl;
+            }
+        }
+        }
             break;
-        case 4:
-            // Aquí debes implementar la lógica para la opción 4
-            break;
+        case 4:{
+            cout<<" \nIngrese el ID del cliente: "; 
+            cin>>id3;
+
+            ReadClientData("clients.csv", clientCatalog, clientCatalogSize);
+            ReadCarData("cars_data.csv", carCatalog, carCatalogSize);
+
+            for(int i = 0; i < clientCatalogSize; i++)
+            {
+                if(clientCatalog[i].id == id3)
+                {
+                    nombre_cliente = clientCatalog[i].nombre;
+                    apellido_cliente = clientCatalog[i].apellido;
+          }
+        }
+        cout << "Los carros vendidos por el cliente " << nombre_cliente <<" "<<apellido_cliente <<" son: \n";
+        for (int i = 0; i < carCatalogSize; i++)
+        {
+            if (carCatalog[i].vendido_a == id3)
+            {
+                cout << "\nID: " << carCatalog[i].id << "\nFabricante: " << carCatalog[i].fabricante << "\nModelo: " << carCatalog[i].modelo << "\nAnio:  \n" << carCatalog[i].anio << endl;
+            }
+        }
+        }
+          break;
         case 5:
             // Aquí debes implementar la lógica para la opción 5
             break;
