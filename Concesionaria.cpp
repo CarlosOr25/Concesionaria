@@ -47,7 +47,7 @@ void ReadCarData(const string &filename, carros catalog[], int &catalogSize);
 int main()
 {
     int opcion, opcion2, opcion3, opcion4;
-    int id;
+    int id, id2, id3;
     carros carCatalog[2000];
     int carCatalogSize;
     clientes clientCatalog[2000];
@@ -73,10 +73,8 @@ int main()
              << "9. Salir." << endl;
         cin >> opcion;
 
-        switch (opcion)
-        {
-        case 1:
-        {
+        switch (opcion) {
+        case 1:  {
             cout << "\nIngrese el ID del cliente: ";
             cin >> id;
 
@@ -104,11 +102,39 @@ int main()
             cout << "El cliente " << nombre_cliente <<" "<<apellido_cliente <<" ha comprado " << carCount << " carros.\n";
             getch();
 
+carCount = 0;   
             break;
         }
-        case 2:
-            // Aquí debes implementar la lógica para la opción 2
+        case 2:   {
+            cout<<" \nIngrese el ID del cliente: ";
+            cin>>id2;
+
+            ReadClientData("clients.csv", clientCatalog, clientCatalogSize);
+            ReadCarData("cars_data.csv", carCatalog, carCatalogSize);
+
+            for (int i = 0; i < carCatalogSize; i++)
+            {
+                if (carCatalog[i].vendido_a == id2)
+                {
+                    carCount++;
+                }
+            }
+
+            for (int i = 0; i < clientCatalogSize; i++)
+            {
+                if (clientCatalog[i].id == id2)
+                {
+                    nombre_cliente = clientCatalog[i].nombre;
+                    apellido_cliente = clientCatalog[i].apellido;
+                }
+            }
+    
+        cout << "El cliente " << nombre_cliente <<" "<<apellido_cliente <<" ha vendido " << carCount << " carros.\n";
+        getch();
+
+        carCount = 0;
             break;
+        } 
         case 3:
             // Aquí debes implementar la lógica para la opción 3
             break;
@@ -454,3 +480,4 @@ void agregarDatosa()
     archivo_carros << a.id << ";" << a.fabricante << ";" << a.modelo << ";" << a.anio << ";" << a.vendido_a << ";" << a.comprado_a << ";" << a.vendido_por << ";" << a.comprado_por << endl;
     archivo_carros.close();
 }
+
