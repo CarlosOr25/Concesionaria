@@ -52,9 +52,10 @@ int main()
     int carCatalogSize;
     clientes clientCatalog[2000];
     int clientCatalogSize;
+    string carro_fabricante,carro_modelo;
     int carCount = 0;
     bool run = true;
-    string linea, nombre_cliente, apellido_cliente, email_cliente;
+    string linea, nombre_cliente, apellido_cliente, email_cliente, edad_cliente;
     carros a;
     clientes c;
     ifstream archivo_cars;          // Declaración de archivo_cars fuera del switch
@@ -187,6 +188,31 @@ carCount = 0;
         }
           break;
         case 5:
+        cout<<" \nIngrese el ID del carro";
+        cin>>id3;
+
+        ReadCarData("cars_data.csv", carCatalog, carCatalogSize);
+        ReadClientData("clients.csv", clientCatalog, clientCatalogSize);
+        for(int i = 0; i < carCatalogSize; i++)
+            {
+                if(carCatalog[i].id == id3)
+                {
+                    carro_fabricante = carCatalog[i].fabricante;
+                    carro_modelo = carCatalog[i].modelo;
+                     cout<<"Los datos del comprador del carro "<< carro_modelo<<" "<< carro_fabricante<<" son: "<<endl;
+          for(int u = 0; u < clientCatalogSize; u++)
+            {
+                if(carCatalog[i].comprado_a == clientCatalog[u].id)
+                {
+                    cout<<"Nombre: "<<clientCatalog[u].nombre<<" Apellido: "<<clientCatalog[u].apellido<<" Edad: "<<clientCatalog[u].edad;
+          } 
+        }   
+        }
+        }
+         
+            
+        
+        
             // Aquí debes implementar la lógica para la opción 5
             break;
         case 6:
