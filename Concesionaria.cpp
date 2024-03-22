@@ -205,7 +205,7 @@ carCount = 0;
             {
                 if(carCatalog[i].comprado_a == clientCatalog[u].id)
                 {
-                    cout<<"Nombre: "<<clientCatalog[u].nombre<<" Apellido: "<<clientCatalog[u].apellido<<" Edad: "<<clientCatalog[u].edad;
+                    cout<<"Nombre: "<<clientCatalog[u].nombre<<" Apellido: "<<clientCatalog[u].apellido<<" Edad: "<<clientCatalog[u].edad<<" Email: "<<clientCatalog[u].email;
           } 
         }   
         }
@@ -230,7 +230,7 @@ carCount = 0;
             {
                 if(carCatalog[i].vendido_a == clientCatalog[u].id)
                 {
-                    cout<<"Nombre: "<<clientCatalog[u].nombre<<" Apellido: "<<clientCatalog[u].apellido<<" Edad: "<<clientCatalog[u].edad;
+                    cout<<"Nombre: "<<clientCatalog[u].nombre<<" Apellido: "<<clientCatalog[u].apellido<<" Edad: "<<clientCatalog[u].edad<<" Email: "<<clientCatalog[u].email;
           } 
         }   
         }
@@ -238,6 +238,30 @@ carCount = 0;
             // Aquí debes implementar la lógica para la opción 6
             break;
         case 7:
+         cout<<"\nIngrese el ID del carro"<<endl;
+        cin>>id4;
+
+        ReadCarData("cars_data.csv", carCatalog, carCatalogSize);
+        ReadClientData("clients.csv", clientCatalog, clientCatalogSize);
+
+
+        for(int i = 0; i < carCatalogSize;i++){
+            if(carCatalog[i].id == id4)
+            {
+                carro_fabricante = carCatalog[i].fabricante;
+                carro_modelo = carCatalog[i].modelo;
+                carro_comprado_por = carCatalog[i].comprado_por;
+                carro_vendido_por = carCatalog[i].vendido_por;
+
+                balance_carro=carro_vendido_por-carro_comprado_por;
+
+               if( balance_carro<0){
+                cout<<"El carro"<<carro_modelo<<" "<<carro_fabricante<<" tiene una perdida de "<<balance_carro;
+               }else if(balance_carro>0){
+                cout<<"El carro "<<carro_modelo<<" "<<carro_fabricante<<" tiene una ganancia de "<<balance_carro;
+               }
+            }
+        }
             // Aquí debes implementar la lógica para la opción 7
             break;
         case 8:
