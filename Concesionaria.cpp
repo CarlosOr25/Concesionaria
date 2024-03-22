@@ -47,11 +47,12 @@ void ReadCarData(const string &filename, carros catalog[], int &catalogSize);
 int main()
 {
     int opcion, opcion2, opcion3, opcion4;
-    int id, id2, id3;
+    int id, id2, id3,id4;
     carros carCatalog[2000];
     int carCatalogSize;
     clientes clientCatalog[2000];
     int clientCatalogSize;
+    int carro_comprado_por, carro_vendido_por, balance_carro;
     string carro_fabricante,carro_modelo;
     int carCount = 0;
     bool run = true;
@@ -209,13 +210,31 @@ carCount = 0;
         }   
         }
         }
-         
-            
-        
-        
             // Aquí debes implementar la lógica para la opción 5
             break;
         case 6:
+        cout<<" \nIngrese el ID del carro";
+        cin>>id4;
+
+        ReadCarData("cars_data.csv", carCatalog, carCatalogSize);
+        ReadClientData("clients.csv", clientCatalog, clientCatalogSize);
+
+        for(int i = 0; i < carCatalogSize; i++)
+            {
+                if(carCatalog[i].id == id4)
+                {
+                    carro_fabricante = carCatalog[i].fabricante;
+                    carro_modelo = carCatalog[i].modelo;
+                     cout<<"Los datos del vendedor del carro "<< carro_modelo<<" "<< carro_fabricante<<" son: "<<endl;
+          for(int u = 0; u < clientCatalogSize; u++)
+            {
+                if(carCatalog[i].vendido_a == clientCatalog[u].id)
+                {
+                    cout<<"Nombre: "<<clientCatalog[u].nombre<<" Apellido: "<<clientCatalog[u].apellido<<" Edad: "<<clientCatalog[u].edad;
+          } 
+        }   
+        }
+        }
             // Aquí debes implementar la lógica para la opción 6
             break;
         case 7:
