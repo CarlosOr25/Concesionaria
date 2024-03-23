@@ -189,7 +189,7 @@ carCount = 0;
         }
           break;
         case 5:
-        cout<<" \nIngrese el ID del carro";
+        cout<<" \nIngrese el ID del carro: ";
         cin>>id3;
 
         ReadCarData("cars_data.csv", carCatalog, carCatalogSize);
@@ -213,7 +213,7 @@ carCount = 0;
             // Aquí debes implementar la lógica para la opción 5
             break;
         case 6:
-        cout<<" \nIngrese el ID del carro";
+        cout<<" \nIngrese el ID del carro: ";
         cin>>id4;
 
         ReadCarData("cars_data.csv", carCatalog, carCatalogSize);
@@ -238,7 +238,7 @@ carCount = 0;
             // Aquí debes implementar la lógica para la opción 6
             break;
         case 7:
-         cout<<"\nIngrese el ID del carro"<<endl;
+         cout<<"\nIngrese el ID del carro: "<<endl;
         cin>>id4;
 
         ReadCarData("cars_data.csv", carCatalog, carCatalogSize);
@@ -402,8 +402,6 @@ void modificarDatosc()
     while(getline(archivo_clientes, linea)){
         int id_actual= atoi(linea.substr(0, linea.find(';')).c_str());
         if(id_actual == c.id){
-            cout << "Ingrese el id: ";
-            cin >> c.id;
             cout << "Ingrese el nombre: ";
             cin >> c.nombre;
             cout << "Ingrese el apellido: ";
@@ -448,10 +446,14 @@ void eliminarDatosc() {
 }
 void agregarDatosc() {
     ofstream archivo_clientes("clients.csv", ios::app);
+    ifstream archivo_clientes2("clients.csv");
+    string linea;
     clientes c;
+    int idnew=0;
 
-    cout << "Ingrese el id: ";
-    cin >> c.id;
+    while(getline(archivo_clientes2, linea)){
+        idnew++;
+    }  
     cout << "Ingrese el nombre: ";
     cin >> c.nombre;
     cout << "Ingrese el apellido: ";
@@ -461,8 +463,9 @@ void agregarDatosc() {
     cout << "Ingrese la edad: ";
     cin >> c.edad;
 
-    archivo_clientes << c.id << ";" << c.nombre << ";" << c.apellido << ";" << c.email << ";" << c.edad << endl;
+    archivo_clientes << idnew << ";" << c.nombre << ";" << c.apellido << ";" << c.email << ";" << c.edad << endl;
     archivo_clientes.close();
+    archivo_clientes2.close();
 }
     void elminardatosc() {
     clientes c;
@@ -497,8 +500,6 @@ void modificarDatosa(){
     while (getline(archivo_carros, linea)) {
         int id_actual = atoi(linea.substr(0, linea.find(';')).c_str());
         if (id_actual == a.id) {
-            cout << "Ingrese el id: ";
-            cin >> a.id;
             cout << "Ingrese el fabricante: ";
             cin >> a.fabricante;
             cout << "Ingrese el modelo: ";
@@ -551,10 +552,14 @@ void eliminarDatosa()
 void agregarDatosa() {
 
     ofstream archivo_carros("cars_data.csv", ios::app);
+    ifstream archivo_carros2("cars_data.csv");
+    string linea;
     carros a;
+    int idnew = 0;
 
-    cout << "Ingrese el id: ";
-    cin >> a.id;
+    while (getline(archivo_carros2, linea)) {
+        idnew++;
+    }
     cout << "Ingrese el fabricante: ";
     cin >> a.fabricante;
     cout << "Ingrese el modelo: ";
@@ -570,6 +575,6 @@ void agregarDatosa() {
     cout << "Ingrese el comprado_por: ";
     cin >> a.comprado_por;
 
-   archivo_carros << a.id << ";" << a.fabricante << ";" << a.modelo << ";" << a.anio << ";" << a.vendido_a << ";" << a.comprado_a << ";" << a.vendido_por << ";" << a.comprado_por << endl;
+   archivo_carros << idnew << ";" << a.fabricante << ";" << a.modelo << ";" << a.anio << ";" << a.vendido_a << ";" << a.comprado_a << ";" << a.vendido_por << ";" << a.comprado_por << endl;
    archivo_carros.close();
 }
