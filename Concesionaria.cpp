@@ -104,7 +104,7 @@ int main()
             cout << "El cliente " << nombre_cliente <<" "<<apellido_cliente <<" ha comprado " << carCount << " carros.\n";
             getch();
 
-carCount = 0;   
+        carCount = 0;   
             break;
         }
         case 2:   {
@@ -133,7 +133,6 @@ carCount = 0;
     
         cout << "El cliente " << nombre_cliente <<" "<<apellido_cliente <<" ha vendido " << carCount << " carros.\n";
         getch();
-
         carCount = 0;
             break;
         } 
@@ -158,7 +157,7 @@ carCount = 0;
         {
             if (carCatalog[i].comprado_a == id3)
             {
-                cout << "\nID: " << carCatalog[i].id << "\nFabricante: " << carCatalog[i].fabricante << "\nModelo: " << carCatalog[i].modelo << "\nAnio:  \n" << carCatalog[i].anio << endl;
+                cout << "\nID: " << carCatalog[i].id << "\nFabricante: " << carCatalog[i].fabricante << "\nModelo: " << carCatalog[i].modelo << "\nAnio: " << carCatalog[i].anio << endl;
             }
         }
         }
@@ -183,7 +182,7 @@ carCount = 0;
         {
             if (carCatalog[i].vendido_a == id3)
             {
-                cout << "\nID: " << carCatalog[i].id << "\nFabricante: " << carCatalog[i].fabricante << "\nModelo: " << carCatalog[i].modelo << "\nAnio:  \n" << carCatalog[i].anio << endl;
+                cout << "\nID: " << carCatalog[i].id << "\nFabricante: " << carCatalog[i].fabricante << "\nModelo: " << carCatalog[i].modelo << "\nAnio: " << carCatalog[i].anio << endl;
             }
         }
         }
@@ -218,7 +217,6 @@ carCount = 0;
 
         ReadCarData("cars_data.csv", carCatalog, carCatalogSize);
         ReadClientData("clients.csv", clientCatalog, clientCatalogSize);
-
         for(int i = 0; i < carCatalogSize; i++)
             {
                 if(carCatalog[i].id == id4)
@@ -322,8 +320,7 @@ carCount = 0;
             } while (opcion2 > 2 || opcion2 < 1);
 
             break;
-
-        case 9:
+case 9:
             cout << "Gracias por preferirnos" << endl;
             run = false;
             break;
@@ -463,7 +460,7 @@ void agregarDatosc() {
     cout << "Ingrese la edad: ";
     cin >> c.edad;
 
-    archivo_clientes << idnew << ";" << c.nombre << ";" << c.apellido << ";" << c.email << ";" << c.edad << endl;
+    archivo_clientes <<"\n"<< idnew << ";" << c.nombre << ";" << c.apellido << ";" << c.email << ";" << c.edad;
     archivo_clientes.close();
     archivo_clientes2.close();
 }
@@ -474,8 +471,7 @@ void agregarDatosc() {
     ofstream temp("temp.csv");
     ifstream archivo_clientes("clients.csv");
     string linea;
-
-    while (getline(archivo_clientes, linea)) {
+while (getline(archivo_clientes, linea)) {
         int id_actual = atoi(linea.substr(0, linea.find(';')).c_str());
         if (id_actual != c.id) {
             temp << linea << endl;
@@ -506,13 +502,13 @@ void modificarDatosa(){
             cin >> a.modelo;
             cout << "Ingrese el anio: ";
             cin >> a.anio;
-            cout << "Ingrese el vendido_a: ";
+            cout << "Ingrese el id del comprador: ";
             cin >> a.vendido_a;
-            cout << "Ingrese el comprado_a: ";
+            cout << "Ingrese el id del vendedor: ";
             cin >> a.comprado_a;
-            cout << "Ingrese el vendido_por: ";
+            cout << "Ingrese el precio de venta: ";
             cin >> a.vendido_por;
-            cout << "Ingrese el comprado_por: ";
+            cout << "Ingrese el precio de compra:";
             cin >> a.comprado_por;
             temp << a.id << ";" << a.fabricante << ";" << a.modelo << ";" << a.anio << ";" << a.vendido_a << ";" << a.comprado_a << ";" << a.vendido_por << ";" << a.comprado_por << endl;
         } else {
@@ -566,15 +562,15 @@ void agregarDatosa() {
     cin >> a.modelo;
     cout << "Ingrese el anio: ";
     cin >> a.anio;
-    cout << "Ingrese el vendido_a: ";
+    cout << "Ingrese id del comprador: ";
     cin >> a.vendido_a;
-    cout << "Ingrese el comprado_a: ";
+    cout << "Ingrese el id del vendedor: ";
     cin >> a.comprado_a;
-    cout << "Ingrese el vendido_por: ";
+    cout << "Ingrese el precio de venta: ";
     cin >> a.vendido_por;
-    cout << "Ingrese el comprado_por: ";
+    cout << "Ingrese el precio de compra: ";
     cin >> a.comprado_por;
 
-   archivo_carros << idnew << ";" << a.fabricante << ";" << a.modelo << ";" << a.anio << ";" << a.vendido_a << ";" << a.comprado_a << ";" << a.vendido_por << ";" << a.comprado_por << endl;
+   archivo_carros <<"\n"<< idnew << ";" << a.fabricante << ";" << a.modelo << ";" << a.anio << ";" << a.vendido_a << ";" << a.comprado_a << ";" << a.vendido_por << ";" << a.comprado_por;
    archivo_carros.close();
 }
