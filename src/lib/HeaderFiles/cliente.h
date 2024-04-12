@@ -16,11 +16,12 @@ public:
     string apellido;
     string email;
     int edad;
+
+    void agregarDatosc();
+    void eliminarDatosc();
+    void modificarDatosc();
 };
 
 // Funciones para el archivo clientes
 
-void agregarDatosc();
-void eliminarDatosc();
-void modificarDatosc();
 

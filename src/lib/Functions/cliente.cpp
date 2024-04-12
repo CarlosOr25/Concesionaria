@@ -1,7 +1,7 @@
 #include "cliente.h"
 #include "carro.h"
 
-void modificarDatosc()
+void Cliente::modificarDatosc()
 {
     Cliente c;
     cout << "Ingrese el id del cliente que desea modificar: ";
@@ -39,7 +39,7 @@ void modificarDatosc()
     cout << "datos modificados con exito" << endl;
 }
 
-void eliminarDatosc()
+void Cliente::eliminarDatosc()
 {
     Cliente c;
     cout << "Ingrese el id del cliente que desea eliminar: ";
@@ -86,7 +86,7 @@ void eliminarDatosc()
     }
 }
 
-void agregarDatosc()
+void Cliente::agregarDatosc()
 {
     ofstream archivo_clientes("data/clients.csv", ios::app);
     ifstream archivo_clientes2("data/clients.csv");
@@ -113,27 +113,3 @@ void agregarDatosc()
     archivo_clientes2.close();
 }
 
-void elminardatosc()
-{
-    Cliente c;
-    cout << "Ingrese el id del cliente que desea eliminar: ";
-    cin >> c.id;
-    ofstream temp("data/temp.csv");
-    ifstream archivo_clientes("data/clients.csv");
-    string linea;
-
-    while (getline(archivo_clientes, linea))
-    {
-        int id_actual = atoi(linea.substr(0, linea.find(';')).c_str());
-        if (id_actual != c.id)
-        {
-            temp << linea << endl;
-        }
-    }
-    archivo_clientes.close();
-    temp.close();
-
-    remove("data/clients.csv");
-    rename("data/temp.csv", "data/clients.csv");
-    cout << "Datos eliminados correctamente." << endl;
-}

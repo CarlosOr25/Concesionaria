@@ -19,9 +19,10 @@ public:
     int comprado_a;
     int vendido_por;
     int comprado_por;
+
+    void agregarDatosa();
+    void eliminarDatosa();
+    void modificarDatosa();
 };
 
-// Funciones para el archivo carros
-void agregarDatosa();
-void eliminarDatosa();
-void modificarDatosa();
+// Funciones para el archivo carros  

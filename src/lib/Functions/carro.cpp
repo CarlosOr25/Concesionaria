@@ -1,7 +1,7 @@
 #include "carro.h"
 #include "cliente.h"
 
-void modificarDatosa()
+void Carro::modificarDatosa()
 {
     Carro a;
     cout << "Ingrese el id del carro que desea modificar: ";
@@ -44,7 +44,7 @@ void modificarDatosa()
     cout << "Datos modificados correctamente." << endl;
 }
 
-void eliminarDatosa()
+void Carro::eliminarDatosa()
 {
     Carro a;
     cout << "Ingrese el id del carro que desea eliminar: ";
@@ -91,7 +91,7 @@ void eliminarDatosa()
     }
 }
 
-void agregarDatosa()
+void Carro::agregarDatosa()
 {
     ofstream archivo_carros("data/cars_data.csv", ios::app);
     ifstream archivo_carros2("data/cars_data.csv");

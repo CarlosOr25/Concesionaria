@@ -1,5 +1,8 @@
 #pragma once
 
+#include "cliente.h"
+#include "carro.h"
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -8,18 +11,7 @@
 
 using namespace std;
 
-class Cliente
-{
-public:
-    int id;
-    string nombre;
-    string apellido;
-    string email;
-    int edad;
-};
+// funciones para leer los datos de los archivos
 
-// Funciones para el archivo clientes
-
-void agregarDatosc();
-void eliminarDatosc();
-void modificarDatosc();
+void ReadClientData(const string &filename, Cliente catalog[], int &catalogSize);
+void ReadCarData(const string &filename, Carro catalog[], int &catalogSize);
