@@ -9,11 +9,17 @@ int main()
     Concesionaria concesionaria;
     concesionaria.carCount = 0;
     concesionaria.run = true;
+    concesionaria.carCatalog = new Carro[2000];
+    concesionaria.clientCatalog = new Cliente[2000];
 
     cout << "Bienvenido a la Consecionaria" << endl;
     while (concesionaria.run)
     {
         menuPrincipal(concesionaria.opcion, concesionaria.opcion2, concesionaria.opcion3, concesionaria.opcion4, concesionaria.id, concesionaria.cliente, concesionaria.carro, concesionaria.clientCatalog, concesionaria.clientCatalogSize, concesionaria.carCatalog, concesionaria.carCatalogSize, concesionaria.carCount, concesionaria.nombre_cliente, concesionaria.apellido_cliente, concesionaria.carro_fabricante, concesionaria.carro_modelo, concesionaria.carro_comprado_por, concesionaria.carro_vendido_por, concesionaria.run);
     }
+
+    delete[] concesionaria.carCatalog;
+    delete[] concesionaria.clientCatalog;
+
     return 0;
 }

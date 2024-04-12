@@ -10,9 +10,9 @@ struct Concesionaria
     Carro carro;
     int opcion, opcion2, opcion3, opcion4;
     int id;
-    Carro carCatalog[2000];
+    Carro *carCatalog;
     int carCatalogSize;
-    Cliente clientCatalog[2000];
+    Cliente *clientCatalog;
     int clientCatalogSize;
     int carro_comprado_por, carro_vendido_por, balance_carro;
     string carro_fabricante, carro_modelo;
